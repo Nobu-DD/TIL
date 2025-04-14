@@ -31,7 +31,7 @@ docker 再起動<br>
 class モデル名 < ApplicationRecord
   ...
   ...
-  mount_uploader :(テーブル名)_image, (アップローダーファイル名)
+  mount_uploader :(テーブル名)_image, (アップローダークラス名)
 end
 ```
 #### mount_uploader

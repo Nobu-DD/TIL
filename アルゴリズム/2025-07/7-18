@@ -1,0 +1,27 @@
+アルゴリズムを鍛えるためにpaizaを始めることにしました。
+まずpaizaに取り組む時に一番「？」てなる部分が**標準入力**だと思います。
+どうやら元々Unixの仕組みに当たるみたいです。
+### 標準入力
+プログラミングに値を渡す入力元。名前の通りですね。
+本来であれば**[cat](https://docs.ruby-lang.org/ja/2.5.0/method/Shell=3a=3aFilter/i/cat.html)**コマンドというのを使用してキーボード上からシェル(コマンド)に対して文字列を渡してあげる必要があるみたいです。
+paizaの場合は既に標準入力が設定されているので、上記のメソッドを使うことは無いはずです。
+
+では設定されている標準入力を取り出すのはどうすればいいのかというと、**[gets](https://docs.ruby-lang.org/ja/latest/method/IO/i/gets.html)**メソッド(get string)というのを使用します。
+get stringと書かれているように、入力した文字列を取得するために使用するメソッドになります。
+
+標準入力で入れられた文字列を**1行ずつ**取得します。場合によっては行の最後尾に改行文字(\n)が含まれているので、基本**[chomp](https://docs.ruby-lang.org/ja/latest/method/String/i/chomp.html)**を使用して改行文字(\n)があった場合取り除く、無かった場合は値をそのまま維持して返します。
+
+#### [chomp!](https://docs.ruby-lang.org/ja/latest/method/String/i/chomp=21.html)でも結果は同じじゃない？
+** [chomp](https://docs.ruby-lang.org/ja/latest/method/String/i/chomp.html)**
+指定した文字列の改行を取り除き、新たに文字列を生成して返します。こちらは改行文字(\n)がある無しに関わらず文字列を返します。
+
+**[chomp!](https://docs.ruby-lang.org/ja/latest/method/String/i/chomp=21.html)**
+こちらは改行があるか無いかで処理が変わります。
+改行がある場合：改行を取り除き、文字列を返します。
+改行がない場合：文字列を返すことはなく、nillを返します。
+
+僕の解釈では、改行が無い場合はそのまま文字列として返してほしいので、基本** [chomp](https://docs.ruby-lang.org/ja/latest/method/String/i/chomp.html)**を使えばいいかな？と感じました。
+認識が間違っていたらご指摘をいただけると嬉しいです🙏
+
+#### 整数を扱いたい場合
+getsはすべて文字列として取得されるので、数字を受け取る場合整数に変換してあげる必要があります。そういった場合、[to_i](https://docs.ruby-lang.org/ja/latest/method/String/i/to_i.html)を使用します。

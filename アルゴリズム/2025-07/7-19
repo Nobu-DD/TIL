@@ -1,0 +1,32 @@
+### 標準入力が複数行の値を取り出す方法(事前に行数が明確な場合)
+1. 事前に空の配列を定義する
+array = []
+2. 行の数timesメソッドを使用して配列に格納する
+
+例. 
+```ruby
+3.times {
+  array << gets.chomp
+}
+
+```
+### 1行目に行数が記述されている場合
+paizaでは1行目に行数が提示されるので、事前に繰り返し用の変数を定義する。
+```ruby
+number = gets.to_i
+number.times {
+略
+```
+### [divmod](https://docs.ruby-lang.org/ja/latest/method/Numeric/i/divmod.html)
+整数に対して指定することで、**割った商(q)**と**余り(r)**を計算し、[q, r]という2要素が含まれる配列にして返します。
+例,
+`10.divmod(2)` => `[5, 0]` 
+`600.divmod(68)` => `[8, 56]`
+また配列ではなく、それぞれ別の値で取得することも可
+```ruby
+q, r = 600.devmod(68)
+puts q  #=> 8
+puts r #=> 56
+```
+### [include?](https://docs.ruby-lang.org/ja/latest/method/Array/i/include=3f.html)
+配列に指定した値が含まれているか確認( == )。持つ場合trueを返す。

@@ -25,18 +25,19 @@ export default class extends Controller {
 2. form_with内に定義した**file_field**(アバター画像ファイルを選択するフィールド)にchangeイベントを付与する。<br>
 `<%= f.file_field :avatar, class: "hidden", data: { action: "change->avatar-upload#submitForm" } %>`<br>
 changeイベントが発行されると、avatar-upload_controller.jsが読み込まれ、その中の**submitForm**イベントハンドラが呼び出されます。
-#### changeイベント
-<input>,<select>,<textarea>タグなどで格納されている要素が**変更**された時に発行されるイベントです。<br>
+- changeイベント
+input,select,textareaタグなどで格納されている要素が**変更**された時に発行されるイベントです。<br>
 今回はvalueがnilだった**file_field**に画像ファイルを選択し、valueの値が画像ファイルによって変更されたので、イベントが発行されます。
-3. submitFormの処理を実行する
-```javascript
+
+3. submitFormの処理を実行する<br>
+```javascript:avatar_upload_controller.js
 // submitFormメソッドを呼び出す(引数としてeventを指定しているが、今回は送信の処理を実行したいだけなので空白でも問題なし。)
 // submitForm()でも可。基本的に慣習としてeventを引数に指定しておく
 submitForm(event) {
 // thisは実行しているオブジェクトを指定し、elementはオブジェクトのプロバティ(html要素)を示している。
 // htmlのWebAPIが用意しているrequestSubmitメソッドを使用して、フォームの送信処理を実行する
     this.element.requestSubmit();
-  }
+}
 ```
 今回のコードの場合、
 this = avatar_uploadコントローラーのインスタンス(対象がformタグ)

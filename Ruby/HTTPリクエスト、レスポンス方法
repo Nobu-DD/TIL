@@ -1,0 +1,7 @@
+# 概要
+フレームワークに頼らず、Rubyのみを使用したリクエスト、レスポンス処理を行いたいので、その方法をまとめてみた。
+## HTTPリクエスト(GET) 簡易的な方法
+1. URIクラスのparseクラスメソッドを呼び出し、リクエスト先のURIを指定する。指定したURIはhost名やポート番号などを単体で取得出来る。
+`uri = URI.parse("https://sample.com/api")`
+2. Net::HTTPクラスのget_responseクラスメソッドを呼び出し、指定したURIにリクエストを送った結果、レスポンスとして取得出来る。
+`response = Net:HTTP.get_response(uri)`
